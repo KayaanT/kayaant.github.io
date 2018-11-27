@@ -1,0 +1,38 @@
+.header {
+    padding: 10px;
+    text-align: center;
+    background: #000000;
+    color: white;
+    font-size: 18px;
+    line-height: 0;
+}
+.landing {
+    position: relative;
+    font-family: Arial;
+}
+
+.call {
+    position: absolute;
+    top: 0;
+    right: 8%;
+    background-color: black;
+    opacity: 0.6;
+    color: white;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+}
+body {
+    margin: 0;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+#num {
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+}

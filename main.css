@@ -28,7 +28,7 @@ body {
 }
 div, p {
     font-family: 'Montserrat', sans-serif;
-    color: white;
+    color: rgb(164,164,164);
 }
 #one {
     position: relative;
@@ -46,7 +46,8 @@ div, p {
     text-align: center;
 }
 h3 {
-    color: rgb(0, 152, 167);
+    /*color: rgb(0, 152, 167);*/
+    color: white;
     /*margin: 50px;*/
     text-align: center;
     /*margin-left: 2%;*/
@@ -171,8 +172,15 @@ img {
     font-family: "Archivo Black", sans-serif;
 }
 .text {
+    width: 30%;
+    margin-left: 10%;
+    margin-right: 10%;
+    float: left;
+    /*text-align: center;*/
+}
+#frame {
     width: 50%;
-    padding-left: 10%;
+    float: left;
 }
 .text h2 {
     position: relative;
@@ -189,4 +197,82 @@ img {
 }
 .text p {
     color: rgb(164,164,164);
+}
+
+#sub {
+    width: 100%;
+    height: 100%;
+    margin-top: 5%;
+    overflow: hidden;
+    position: relative;
+    display: block;
+}
+#sub img {
+    filter: blur(5px);
+}
+
+.pictext {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.pictext h3 {
+    font-family: "Archivo Black", sans-serif;
+    color: white;
+    font-size: 2.5vw;
+}
+.pictext p {
+    color: white;
+}
+.button {
+    background-color: rgb(0,152,167);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.5vw;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+#lol {
+    background-color: rgba(0,0,0, 0.4);
+    border-color: transparent;
+    /*opacity: 0.2;*/
+    font-size: 1.5vw;
+    margin: 4px 2px;
+    padding: 15px 32px;
+    width: 40%;
+    color: white;
+}
+h4 {
+    color: white;
+}
+@media only screen and (max-width: 800px) {
+    .text {
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+        /*float: left;*/
+        /*text-align: center;*/
+    }
+    #map {
+        width: 100%;
+    }
+    #frame {
+        width: 100%; !important;
+        /*float: left;*/
+    }
+}
+th {
+    text-align: left;
+}
+td {
+    color: rgb(0,152,167);
 }

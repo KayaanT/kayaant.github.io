@@ -15,13 +15,11 @@
 <body>
 
 <div class="topnav" id="myTopnav">
-    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
     <a href="#projects">Project History</a>
-    <a href="#about">About Us</a>
-    <a href="#about" class="active">Home</a>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
-    </a>
+    <a href="#about">About</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()"></a>
     <div class="header">
         <h3>TAIFA ENGINEERING</h3>
     </div>
@@ -116,21 +114,51 @@
         <p>1234 Random road, Saskatoon, SK 1A1A1A, CA</p>
         <div class='hours'>
             <h4>Hours of Operation</h4>
-           <table class="opening-days">
-               <tr><th>Monday</th><td>9am - 5pm</td></tr>
-               <tr><th>Tuesday</th><td>9am - 5pm</td></tr>
-               <tr><th>Wednesday&nbsp; &nbsp; &nbsp; &nbsp;</th><td>9am - 5pm</td></tr>
-               <tr><th>Thursday</th><td>9am - 5pm</td></tr>
-               <tr><th>Friday</th><td>9am - 5pm</td></tr>
-               <tr><th>Saturday</th><td>Closed</td></tr>
-               <tr><th>Sunday</th><td>Closed</td></tr>
-           </table>
+            <table class="opening-days">
+                <tbody>
+                <tr>
+                    <td class="week-day">Monday</td>
+                    <td>9am - 5pm</td>
+                </tr>
+                <tr>
+                    <td class="week-day">Tuesday</td>
+                    <td>9am - 5pm</td>
+                </tr>
+                <tr>
+                    <td class="week-day">Wednesday&nbsp;&nbsp;&nbsp;</td>
+                    <td>9am - 5pm</td>
+                </tr>
+                <tr>
+                    <td class="week-day">Thursday</td>
+                    <td>9am - 5pm</td>
+                </tr>
+                <tr>
+                    <td class="week-day">Friday</td>
+                    <td>9am - 5pm</td>
+                </tr>
+                <tr>
+                    <td class="week-day">Saturday</td>
+                    <td>Closed</td>
+                </tr>
+                <tr>
+                    <td class="week-day">Sunday</td>
+                    <td>Closed</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <div id="map">
         <div id="frame"><iframe width="100%" height="650" src="https://maps.google.com/maps?width=100%&amp;height=650&amp;hl=en&amp;q=508%20Blackburn%20Crescent+(TAIFA)&amp;ie=UTF8&amp;t=&amp;z=13&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/map-my-route/">Draw map route</a></iframe></div><br />
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var today = new Date();
+        var todaysHours = document.querySelector('.opening-days tr:nth-child(' + today.getDay() + ')');
+        todaysHours.classList.add('bold')
+    });
+</script>
 </body>
 
 </html>

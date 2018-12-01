@@ -270,9 +270,14 @@ h4 {
         /*float: left;*/
     }
 }
-th {
-    text-align: left;
-}
+
 td {
+    color: white;
+}
+.bold td {
+    font-weight: 900;
     color: rgb(0,152,167);
+}
+.bold {
+    font-weight: bold;
 }

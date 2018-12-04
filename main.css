@@ -48,7 +48,7 @@ a, p {
     max-width: 100%;
     display: block;
     height: auto;
-    float: left;
+    float: right;
     overflow: hidden;
     align-content: center;
     margin-left: 4%;
@@ -67,7 +67,7 @@ h3 {
     max-width: 100%;
     display: block;
     height: auto;
-    float: right;
+    float: left;
     overflow: hidden;
     align-content: center;
     margin-left: 4%;
@@ -81,7 +81,7 @@ h3 {
     max-width: 100%;
     display: block;
     height: auto;
-    float: left;
+    float: right;
     overflow: hidden;
     align-content: center;
     margin-left: 4%;

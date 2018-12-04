@@ -1,8 +1,9 @@
 .topnav {
-    background-color: rgb(22,22,22);
+    background-color: rgb(22, 22, 22);
     overflow: hidden;
     z-index: 500;
 }
+
 .topnav a {
     float: right;
     display: block;
@@ -12,24 +13,35 @@
     text-decoration: none;
     font-size: 2vw;
 }
+
 .topnav a:hover {
     background-color: #ddd;
-    color: rgb(22,22,22);
+    color: rgb(22, 22, 22);
 }
+
 .active {
-    background-color: rgb(0,152,167);
+    background-color: rgb(0, 152, 167);
     color: white;
 }
+
 .topnav .icon {
     display: none;
 }
+
 body {
     -webkit-text-size-adjust: none;
 }
+
 div, p {
     font-family: 'Montserrat', sans-serif;
-    color: rgb(164,164,164);
+    color: rgb(164, 164, 164);
 }
+
+a, p {
+    text-decoration: none;
+!important;
+}
+
 #one {
     position: relative;
     width: 550px;
@@ -37,22 +49,18 @@ div, p {
     display: block;
     height: auto;
     float: left;
-    /*padding-right: 4%;*/
-    /*padding-left: 4%;*/
     overflow: hidden;
     align-content: center;
     margin-left: 4%;
     margin-right: 4%;
     text-align: center;
 }
+
 h3 {
-    /*color: rgb(0, 152, 167);*/
     color: white;
-    /*margin: 50px;*/
     text-align: center;
-    /*margin-left: 2%;*/
-    /*margin-right: 2%;*/
 }
+
 #two {
     position: relative;
     width: 550px;
@@ -60,14 +68,13 @@ h3 {
     display: block;
     height: auto;
     float: right;
-    /*padding-right: 4%;*/
-    /*padding-left: 4%;*/
     overflow: hidden;
     align-content: center;
     margin-left: 4%;
     margin-right: 4%;
     text-align: center;
 }
+
 #three {
     position: relative;
     width: 550px;
@@ -75,14 +82,13 @@ h3 {
     display: block;
     height: auto;
     float: left;
-    /*padding-right: 4%;*/
-    /*padding-left: 4%;*/
     overflow: hidden;
     align-content: center;
     margin-left: 4%;
     margin-right: 4%;
     text-align: center;
 }
+
 .para {
     text-align: center;
     padding-left: 4%;
@@ -90,17 +96,16 @@ h3 {
     justify-content: center;
     align-items: center;
     height: 30%;
-    /*display: flex;*/
     flex-direction: column;
-    /*height: 310px;*/
     display: block;
     line-height: 175%;
 }
 
 .header {
     position: relative;
-    text-align: left; !important;
-    background: rgb(22,22,22);
+    text-align: left;
+!important;
+    background: rgb(22, 22, 22);
     font-size: 2vw;
     line-height: 0;
     font-family: 'Archivo Black', sans-serif;
@@ -109,10 +114,12 @@ h3 {
     left: 1%;
     z-index: 500;
 }
+
 .header h3 {
     text-align: left;
     z-index: 500;
 }
+
 .title {
     position: absolute;
     top: 50%;
@@ -123,17 +130,19 @@ h3 {
     width: 75%;
     font-family: 'Archivo Black', sans-serif;
 }
+
 .landing {
     position: relative;
     font-family: 'Archivo Black', sans-serif;
     text-align: center;
 }
+
 .call {
     position: absolute;
     top: 0;
     right: 8%;
     left: auto;
-    background-color: rgb(22,22,22);
+    background-color: rgb(22, 22, 22);
     opacity: 0.7;
     color: white;
     padding-top: 10px;
@@ -142,35 +151,41 @@ h3 {
     padding-bottom: 10px;
     font-family: 'Montserrat', sans-serif;
 }
+
 #num {
     text-decoration: none;
     color: white;
     font-size: 2vw;
 }
+
 body {
     margin: 0;
-    background-color: rgb(22,22,22);
+    background-color: rgb(22, 22, 22);
 }
+
 img {
     max-width: 100%;
     z-index: 0;
 }
+
 .crop {
     max-height: 550px;
     overflow: hidden;
 }
+
 .about {
     position: relative;
     bottom: 30%;
     left: 0;
     right: 0;
     padding-bottom: 2%;
-    background-color: rgb(22,22,22);
+    background-color: rgb(22, 22, 22);
     color: rgb(0, 152, 167);
     font-size: 1.8vw;
     text-align: center;
     font-family: "Archivo Black", sans-serif;
 }
+
 .text {
     width: 30%;
     margin-left: 10%;
@@ -178,10 +193,12 @@ img {
     float: left;
     /*text-align: center;*/
 }
+
 #frame {
     width: 50%;
     float: left;
 }
+
 .text h2 {
     position: relative;
     padding-top: 5%;
@@ -191,12 +208,14 @@ img {
     /*text-align: left;*/
     font-family: "Archivo Black", sans-serif;
 }
+
 .text h4 {
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
 }
+
 .text p {
-    color: rgb(164,164,164);
+    color: rgb(164, 164, 164);
 }
 
 #sub {
@@ -207,6 +226,7 @@ img {
     position: relative;
     display: block;
 }
+
 #sub img {
     filter: blur(5px);
 }
@@ -220,16 +240,19 @@ img {
     width: 100%;
     text-align: center;
 }
+
 .pictext h3 {
     font-family: "Archivo Black", sans-serif;
     color: white;
     font-size: 2.5vw;
 }
+
 .pictext p {
     color: white;
 }
+
 .button {
-    background-color: rgb(0,152,167);
+    background-color: rgb(0, 152, 167);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -239,10 +262,11 @@ img {
     font-size: 1.5vw;
     margin: 4px 2px;
     cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Archivo Black', sans-serif;
 }
+
 #lol {
-    background-color: rgba(0,0,0, 0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     border-color: transparent;
     /*opacity: 0.2;*/
     font-size: 1.5vw;
@@ -251,9 +275,11 @@ img {
     width: 40%;
     color: white;
 }
+
 h4 {
     color: white;
 }
+
 @media only screen and (max-width: 800px) {
     .text {
         width: 60%;
@@ -262,22 +288,44 @@ h4 {
         /*float: left;*/
         /*text-align: center;*/
     }
+
     #map {
         width: 100%;
     }
+
     #frame {
-        width: 100%; !important;
-        /*float: left;*/
+        width: 100%;
+    !important;
     }
 }
 
 td {
     color: white;
 }
+
 .bold td {
     font-weight: 900;
-    color: rgb(0,152,167);
+    color: rgb(0, 152, 167);
 }
+
 .bold {
     font-weight: bold;
+}
+
+.footer {
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: left;
+    float: left;
+    width: 80%;
+    padding-top: 5%;
+    padding-bottom: 3%;
+}
+
+.text a {
+    color: rgb(0, 152, 167);
+}
+
+input [type=submit] {
+    font-family: "Archivo Black", sans-serif;
 }

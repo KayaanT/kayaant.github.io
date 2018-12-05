@@ -9,9 +9,10 @@
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 16px 16px;
     text-decoration: none;
-    font-size: 2vw;
+    font-size: 1.8vw;
+    font-family: "Archivo Black", sans-serif;
 }
 
 .topnav a:hover {
@@ -101,23 +102,26 @@ h3 {
     line-height: 175%;
 }
 
+
 .header {
     position: relative;
-    text-align: left;
-!important;
+    text-align: left;!important;
     background: rgb(22, 22, 22);
     font-size: 2vw;
     line-height: 0;
     font-family: 'Archivo Black', sans-serif;
     text-decoration: none;
     display: block;
-    left: 1%;
+    left: 5%;
     z-index: 500;
+    width: 10%;
+
 }
 
 .header h3 {
     text-align: left;
     z-index: 500;
+    font-size: 2vw;
 }
 
 .title {
@@ -169,7 +173,7 @@ img {
 }
 
 .crop {
-    max-height: 550px;
+    max-height: 500px;
     overflow: hidden;
 }
 
@@ -180,10 +184,13 @@ img {
     right: 0;
     padding-bottom: 2%;
     background-color: rgb(22, 22, 22);
-    color: rgb(0, 152, 167);
+    color: rgb(0, 152, 167);!important;
     font-size: 1.8vw;
     text-align: center;
     font-family: "Archivo Black", sans-serif;
+}
+.about h2 {
+    color: rgb(0, 152, 167);!important
 }
 
 .text {
@@ -225,6 +232,7 @@ img {
     overflow: hidden;
     position: relative;
     display: block;
+    max-height: 250px;
 }
 
 #sub img {
@@ -297,6 +305,9 @@ h4 {
         width: 100%;
     !important;
     }
+    #insidemap {
+        height: 400px;
+    }
 }
 
 td {
@@ -327,5 +338,9 @@ td {
 }
 
 input [type=submit] {
+    font-family: "Archivo Black", sans-serif;
+}
+h2 {
+    color: white;
     font-family: "Archivo Black", sans-serif;
 }

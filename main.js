@@ -7,3 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
 function showDiv() {
     document.getElementById('form').style.display = "block";
 }
+function scrollWin() {
+    window.scrollBy(0, 700);
+}

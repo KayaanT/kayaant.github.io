@@ -2,6 +2,8 @@
     background-color: rgb(22, 22, 22);
     overflow: hidden;
     z-index: 500;
+    /*float: right;*/
+    display: block;
 }
 
 .topnav a {
@@ -12,7 +14,7 @@
     padding: 16px 16px;
     text-decoration: none;
     font-size: 1.8vw;
-    font-family: "Archivo Black", sans-serif;
+    font-family: "Cambria", sans-serif;
 }
 
 .topnav a:hover {
@@ -34,7 +36,7 @@ body {
 }
 
 div, p {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Cambria', sans-serif;
     color: rgb(164, 164, 164);
 }
 
@@ -109,13 +111,13 @@ h3 {
     background: rgb(22, 22, 22);
     font-size: 2vw;
     line-height: 0;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Cambria', sans-serif;
     text-decoration: none;
-    display: block;
+    display: inline-block;
     left: 5%;
     z-index: 500;
     width: 10%;
-
+    /*float: right;*/
 }
 
 .header h3 {
@@ -132,12 +134,12 @@ h3 {
     font-size: 2.3vw;
     color: white;
     width: 75%;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Cambria', sans-serif;
 }
 
 .landing {
     position: relative;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Cambria', sans-serif;
     text-align: center;
 }
 
@@ -153,7 +155,7 @@ h3 {
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 10px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Cambria', sans-serif;
 }
 
 #num {
@@ -187,7 +189,7 @@ img {
     color: rgb(0, 152, 167);!important;
     font-size: 1.8vw;
     text-align: center;
-    font-family: "Archivo Black", sans-serif;
+    font-family: "Cambria", sans-serif;
 }
 .about h2 {
     color: rgb(0, 152, 167);!important
@@ -213,11 +215,11 @@ img {
     color: rgb(0, 152, 167);
     font-size: 3vw;
     /*text-align: left;*/
-    font-family: "Archivo Black", sans-serif;
+    font-family: "Cambria", sans-serif;
 }
 
 .text h4 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Cambria', sans-serif;
     font-size: 30px;
 }
 
@@ -250,7 +252,7 @@ img {
 }
 
 .pictext h3 {
-    font-family: "Archivo Black", sans-serif;
+    font-family: "Cambria", sans-serif;
     color: white;
     font-size: 2.5vw;
 }
@@ -270,7 +272,7 @@ img {
     font-size: 1.5vw;
     margin: 4px 2px;
     cursor: pointer;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Cambria', sans-serif;
 }
 
 #lol {
@@ -338,9 +340,9 @@ td {
 }
 
 input [type=submit] {
-    font-family: "Archivo Black", sans-serif;
+    font-family: "Cambria", sans-serif;
 }
 h2 {
     color: white;
-    font-family: "Archivo Black", sans-serif;
+    font-family: "Cambria", sans-serif;
 }

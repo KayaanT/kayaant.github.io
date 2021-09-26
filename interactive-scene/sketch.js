@@ -5,15 +5,25 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+// To-do:
+// create button to draw card - can also use a key
+// create card like rectangle to display chosen card (or get an empty picture of a playing card)
+// link a keyboard key to reshuffle the deck
+// make window resizable
+
+
 let cardValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 let cardSuits = ["hearts", "spades", "clubs", "diamonds"];
+let mouseOverButton = false;
 
 let card;
 let deck = [];
+let cardChosen = false;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 800);
   fill("white");
+  textSize(48);
 
   // create a shuffled deck of cards
   createShuffledDeck();
@@ -22,16 +32,32 @@ function setup() {
 
 function draw() {
   background(0);
-  text(card.Value + " of " + card.Suit, 100, 100);
+  if (cardChosen === true) {
+    textAlign(CENTER);
+
+    fill("white");
+    rect(width/2 - 125, height/8, 250, 400, 20);
+    fill("blue");
+    text(card.Value + " of " + card.Suit, width / 2, height / 3);
+  }
+  fill("grey");
+  rect(width / 2 - 125, 3 * height / 4, 250, 80, 20);
+  mouseOverButton = collidePointRect(mouseX, mouseY, width / 2 - 125, 3 * height / 4, 250, 80);
+
+  fill("black");
+  textAlign(LEFT);
+  text("Draw Card", width / 2 - 115, 3 * height / 4 + 55);
+
 }
 
 function mouseClicked() {
-  card = chooseCard();
-  console.log(str(card));
-  text(card.Value + " of " + card.Suit, 100, 100);
+  if (mouseOverButton) {
+    card = chooseCard();
+  }
 }
 
 function chooseCard() {
+  cardChosen = true; 
   let chosenCard;
   chosenCard = deck[0];
   deck.splice(0, 1);
@@ -39,10 +65,11 @@ function chooseCard() {
 }
 
 function createShuffledDeck() {
+  let newCard;
   for (let suit = 0; suit < cardSuits.length; suit++) {
     for (let value = 0; value < cardValues.length; value++) {
-      card = { Value: cardValues[value], Suit: cardSuits[suit] };
-      deck.push(card);
+      newCard = { Value: cardValues[value], Suit: cardSuits[suit] };
+      deck.push(newCard);
     }
   }
   deck = shuffle(deck);

@@ -3,11 +3,12 @@
 // October 1st, 2021
 //
 // Extra for Experts:
-// - window can be resized at any time, content will adjust
+// - window can be resized at any time, content will adjust to fit
 // - 
 
 // To-do:
 // sound effect when card drawn
+// shuffling sound effect
 // optimize suit image code
 
 // optional:
@@ -21,6 +22,7 @@ let cardSuits = ["hearts", "spades", "clubs", "diamonds"];
 let deck = [];
 let card;
 let spades, hearts, clubs, diamonds;
+let shuffleSoundEffect;
 
 // some switches
 let mouseCollidingButton = false;
@@ -38,7 +40,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   fill("white");
-  textSize(38);
   imageMode(CENTER);
 
   // create a shuffled deck of cards
@@ -54,6 +55,7 @@ function draw() {
     displayCard();
   }
   displayButton();
+  drawCommads();
 }
 
 function mouseClicked() {
@@ -131,6 +133,7 @@ function displayCard() {
 
   // write into the rectangle 
   textAlign(CENTER);
+  textSize(48);
   if (card.Value === 1) {
     text("A", width / 2, height / 4);
   }
@@ -157,10 +160,19 @@ function displayButton() {
   // button text
   fill("black");
   textAlign(LEFT);
+  textSize(36);
   if (deck.length > 0) {
     text("Draw Card (d)", width / 2 - 115, 3 * height / 4 + 55);
   }
   else {
     text("Reset", width / 2 - 50, 3 * height / 4 + 55);
   }
+}
+
+function drawCommads() {
+  text("Commands: ", width - 250, height/10);
+  textSize(24);
+  text("Shuffle (s)", width - 250, height/10 + 30);
+  text("Draw Cars (d)", width - 250, height/10 + 60);
+  text("Reset (r)", width - 250, height/10 + 90);
 }

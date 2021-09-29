@@ -78,8 +78,10 @@ function keyPressed() {
     }
   }
   if (key === "s") {
-    deck = shuffle(deck);
-    console.log(deck);
+    if (deck.length > 0) {
+      deck = shuffle(deck);
+      console.log(deck);
+    }
   }
   if (key === "r") {
     createShuffledDeck();
@@ -173,6 +175,6 @@ function drawCommads() {
   text("Commands: ", width - 250, height/10);
   textSize(24);
   text("Shuffle (s)", width - 250, height/10 + 30);
-  text("Draw Cars (d)", width - 250, height/10 + 60);
+  text("Draw Card (d)", width - 250, height/10 + 60);
   text("Reset (r)", width - 250, height/10 + 90);
 }

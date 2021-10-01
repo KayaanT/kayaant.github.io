@@ -4,36 +4,36 @@
 //
 // Extra for Experts:
 // - window can be resized at any time, content will adjust to fit
-// - 
+// - 3 different sound effects for 3 different actoins user can do
 
-// To-do:
-// sound effect when card drawn
-// shuffling sound effect
-// optimize suit image code
-
-// optional:
-// start from top left and put all cards in order they were drawn (maybe create a used cards array)
-// create loading screen for extras for experts
 
 
 // variables for creating deck of cards
 let cardValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 let cardSuits = ["hearts", "spades", "clubs", "diamonds"];
 let deck = [];
+
+// global variables to be used later
 let card;
 let spades, hearts, clubs, diamonds;
-let shuffleSoundEffect;
+let createDeckSound, shuffleSound, drawCardSound;
 
 // some switches
 let mouseCollidingButton = false;
 let cardChosen = false;
 
-// load images
 function preload() {
+  // suit images
   spades = loadImage("assets/spades.png");
   hearts = loadImage("assets/hearts.png");
   clubs = loadImage("assets/clubs.png");
   diamonds = loadImage("assets/diamonds.png");
+
+  // sound effects
+  soundFormats("mp3");
+  createDeckSound = loadSound("assets/card_deck");
+  shuffleSound = loadSound("assets/card_shuffle");
+  drawCardSound = loadSound("assets/draw_card");
 }
 
 function setup() {
@@ -80,6 +80,7 @@ function keyPressed() {
   if (key === "s") {
     if (deck.length > 0) {
       deck = shuffle(deck);
+      shuffleSound.play();
       console.log(deck);
     }
   }
@@ -94,7 +95,8 @@ function chooseCard() {
   let chosenCard;
   chosenCard = deck[0];
   deck.splice(0, 1);
-  cardChosen = true; 
+  cardChosen = true;
+  drawCardSound.play(); 
   return chosenCard;
 }
 
@@ -108,6 +110,7 @@ function createShuffledDeck() {
     }
   }
   deck = shuffle(deck); // shuffle the deck
+  createDeckSound.play(); // play sound effect
 }
 
 function displayCard() {

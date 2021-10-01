@@ -1,12 +1,16 @@
-// Interactive Scene Assignment - random card
+// Interactive Scene Assignment
 // Kayaan Tharani
 // October 1st, 2021
+//
+// Description: 
+// Random Card Chooser
+// This is a virtual deck of cards. You can draw a card, shuffle the deck, and start over.
 //
 // Extra for Experts:
 // - window can be resized at any time, content will adjust to fit
 // - 3 different sound effects for 3 different actoins user can do
 
-
+/* -------------------------------------------------------------------------------------------------- */
 
 // variables for creating deck of cards
 let cardValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
@@ -23,7 +27,7 @@ let mouseCollidingButton = false;
 let cardChosen = false;
 
 function preload() {
-  // suit images
+  // images for suits
   spades = loadImage("assets/spades.png");
   hearts = loadImage("assets/hearts.png");
   clubs = loadImage("assets/clubs.png");
@@ -38,32 +42,33 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
   fill("white");
   imageMode(CENTER);
 
-  // create a shuffled deck of cards
   createShuffledDeck();
   console.log(deck);
 }
 
 function draw() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowHeight); // canvas adjusts to window size
   background("#204c13"); // green
 
-  if (cardChosen === true) {
-    displayCard();
-  }
+  // call functions
   displayButton();
-  drawCommads();
+  drawInstructions();
+  if (cardChosen) {
+    displayCard();
+  }  
 }
 
 function mouseClicked() {
+  // check if button is clicked
   if (mouseCollidingButton) {
     if (deck.length > 0) {
       card = chooseCard();
     }
     else {
+      // if deck is empty then make a new deck
       createShuffledDeck();
       cardChosen = false;
       console.log(deck);
@@ -72,11 +77,13 @@ function mouseClicked() {
 }
 
 function keyPressed() {
+  // draw card
   if (key === "d") {
     if (deck.length > 0) {
       card = chooseCard();
     }
   }
+  // shuffle deck
   if (key === "s") {
     if (deck.length > 0) {
       deck = shuffle(deck);
@@ -84,6 +91,7 @@ function keyPressed() {
       console.log(deck);
     }
   }
+  // reset the deck
   if (key === "r") {
     createShuffledDeck();
     cardChosen = false;
@@ -92,33 +100,40 @@ function keyPressed() {
 }
 
 function chooseCard() {
+  // take first card from deck and then remove it from the deck
   let chosenCard;
   chosenCard = deck[0];
   deck.splice(0, 1);
   cardChosen = true;
-  drawCardSound.play(); 
+  drawCardSound.play(); // sound effect
   return chosenCard;
 }
 
 function createShuffledDeck() {
   let newCard;
   deck = []; // make sure deck is empty
+
+  // iterate through every suit and value combination and add it to the deck
   for (let suit = 0; suit < cardSuits.length; suit++) {
     for (let value = 0; value < cardValues.length; value++) {
-      newCard = { Value: cardValues[value], Suit: cardSuits[suit] };
+      // create object in new card variable with value to be replaced every time the loop runs
+      newCard = { 
+        Value: cardValues[value], 
+        Suit: cardSuits[suit] 
+      };
       deck.push(newCard);
     }
   }
-  deck = shuffle(deck); // shuffle the deck
-  createDeckSound.play(); // play sound effect
+  deck = shuffle(deck); // shuffle the deck since it will always be made in order
+  createDeckSound.play(); // sound effect
 }
 
 function displayCard() {
-  // draw the white rectangle card
+  // draw an empty white card
   fill("white");
   rect(width/2 - 125, height/8, 250, 400, 20);
 
-  // display suit image
+  // display suit image on rectangle
   if (card.Suit === "spades") {
     image(spades, width/2, height/3 + 75, 100, 100);
     fill("black");
@@ -136,20 +151,20 @@ function displayCard() {
     fill("red");
   }
 
-  // write into the rectangle 
+  // write value onto the rectangle 
   textAlign(CENTER);
   textSize(48);
   if (card.Value === 1) {
-    text("A", width / 2, height / 4);
+    text("A", width / 2, height / 4); // 1 => A
   }
   else if (card.Value === 11) {
-    text("J", width / 2, height / 4);
+    text("J", width / 2, height / 4); // 11 => J
   }
   else if (card.Value === 12) {
-    text("Q", width / 2, height / 4);
+    text("Q", width / 2, height / 4); // 12 => Q
   }
   else if (card.Value === 13) {
-    text("K", width / 2, height / 4);
+    text("K", width / 2, height / 4); // 13 => K
   }
   else {
     text(card.Value, width / 2, height / 4);
@@ -160,12 +175,18 @@ function displayButton() {
   // draw card button
   fill("grey");
   rect(width / 2 - 125, 3 * height / 4, 250, 80, 20);
-  mouseCollidingButton = collidePointRect(mouseX, mouseY, width / 2 - 125, 3 * height / 4, 250, 80);
+
+  // collision detection between mouse and button
+  mouseCollidingButton = collidePointRect(
+    mouseX, mouseY, width / 2 - 125, 3 * height / 4, 250, 80
+  );
  
   // button text
   fill("black");
   textAlign(LEFT);
   textSize(36);
+
+  // change text to 'reset' if user has drawn every card already
   if (deck.length > 0) {
     text("Draw Card (d)", width / 2 - 115, 3 * height / 4 + 55);
   }
@@ -174,7 +195,8 @@ function displayButton() {
   }
 }
 
-function drawCommads() {
+function drawInstructions() {
+  // text in top right of screen
   text("Commands: ", width - 250, height/10);
   textSize(24);
   text("Shuffle (s)", width - 250, height/10 + 30);

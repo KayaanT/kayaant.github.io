@@ -110,14 +110,13 @@ function chooseCard() {
 }
 
 function createShuffledDeck() {
-  let newCard;
   deck = []; // make sure deck is empty
 
   // iterate through every suit and value combination and add it to the deck
   for (let suit = 0; suit < cardSuits.length; suit++) {
     for (let value = 0; value < cardValues.length; value++) {
       // create object in new card variable with value to be replaced every time the loop runs
-      newCard = { 
+      let newCard = { 
         Value: cardValues[value], 
         Suit: cardSuits[suit] 
       };
@@ -185,18 +184,16 @@ function displayButton() {
   fill("black");
   textAlign(LEFT);
   textSize(36);
-
-  // change text to 'reset' if user has drawn every card already
-  if (deck.length > 0) {
+  if (deck.length > 0) { // check if card remaining
     text("Draw Card (d)", width / 2 - 115, 3 * height / 4 + 55);
   }
   else {
-    text("Reset", width / 2 - 50, 3 * height / 4 + 55);
+    text("Reset", width / 2 - 50, 3 * height / 4 + 55); // change text to 'reset' if no cards remaining
   }
 }
 
 function drawInstructions() {
-  // text in top right of screen
+  // text for commands in top right of screen
   text("Commands: ", width - 250, height/10);
   textSize(24);
   text("Shuffle (s)", width - 250, height/10 + 30);

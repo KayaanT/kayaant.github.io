@@ -18,7 +18,10 @@ function bubbleUp() {
     bubble.y += bubble.dy;
 
     //jitter sideways
-    bubble.x += random(-5, 5); 
+    // bubble.x += random(-5, 5); 
+
+    bubble.x = noise(bubble.theTime) * width;
+    bubble.theTime += 0.005;
   }
 }
 
@@ -36,14 +39,15 @@ function spawnBubble() {
     y: height,
     radius: random(20, 50),
     dx: 0,
-    dy: -5,
-    bubbleColor: color(random(0, 255), random(0, 255), random(0, 255), random(0, 255))
+    dy: -2,
+    bubbleColor: color(random(0, 255), random(0, 255), random(0, 255), random(0, 255)),
+    theTime: random(0, 1000),
   };
   theBubbles.push(bubble);
 }
 
 function mousePressed() {
-  for (let i = 0; i<5; i++) {
+  for (let i = 0; i<25; i++) {
     spawnBubble();
   }
 }

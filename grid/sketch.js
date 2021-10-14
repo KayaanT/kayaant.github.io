@@ -1,6 +1,12 @@
 // Grid Demo
 let gridSize = 30;
 let grid;
+let soundEffect;
+
+function preload() {
+  soundFormats("mp3");
+  soundEffect = loadSound("assets/effect");
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -51,10 +57,22 @@ function mousePressed() {
   let cellX = Math.floor(mouseX/cellWidth);
   let cellY = Math.floor(mouseY/cellHeight);
 
+  soundEffect.play();
+  
   if (grid[cellY][cellX] === 1) {
     grid[cellY][cellX] = 0;
   }
   else if (grid[cellY][cellX] === 0) {
     grid[cellY][cellX] = 1;
+  }
+}
+
+function keyTyped() {
+  if (key === "e") {
+    for (let cellY of grid) {
+      for (let cellX of cellY) {
+        grid[cellY][cellX] = 0;
+      }
+    }
   }
 }

@@ -1,9 +1,14 @@
 // Conway's game of life
 
 let grid;
-let gridSize = 40;
+let gridSize = 60;
 let cellHeight, cellWidth;
 let autoPlay = false;
+let gun;
+
+function preload() {
+  gun = loadJSON("assets/gosper_gun.json"); // assumes gridsize = 60
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -15,7 +20,7 @@ function setup() {
 
 function draw() {
   background(220);
-  if (autoPlay && frameCount % 20 === 0) {
+  if (autoPlay && frameCount % 1 === 0) {
     nextTurn();
   }
   displayGrid();
@@ -88,6 +93,9 @@ function keyPressed() {
   }
   if (key === "p") {
     autoPlay = !autoPlay;
+  }
+  if (key === "g") {
+    grid = gun;
   }
 }
 

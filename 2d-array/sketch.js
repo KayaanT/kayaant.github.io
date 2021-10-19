@@ -1,9 +1,13 @@
-// Project Title
+// Tic Tac Toe Game
 // Your Name
 // Date
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
+
+// to do:
+// create grid
+  
 
 
 function setup() {

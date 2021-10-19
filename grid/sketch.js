@@ -78,7 +78,7 @@ function mousePressed() {
 }
 
 function swap(x, y) {
-  if (x >= 0 && x < gridSize && y >= 0 && y <= gridSize){
+  if (x >= 0 && x < gridSize && y >= 0 && y < gridSize){
     if (grid[y][x] === 1) {
       grid[y][x] = 0;
     }

@@ -7,6 +7,8 @@
 
 // to do:
 // create grid
+// create custom shaped for x and o
+// create ai 
   
 
 

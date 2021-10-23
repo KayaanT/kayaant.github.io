@@ -23,7 +23,7 @@ function setup() {
   else {
     createCanvas(windowHeight*0.9, windowHeight*0.9);
   }
-  cellSize = (width-1)/gridDimensions;
+  cellSize = (width-1 )/gridDimensions;
 }
 
 function draw() {

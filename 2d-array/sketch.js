@@ -16,9 +16,11 @@
 // create ai 
 // cursor change when in right spot
 // center grid within canvas
+// funciton to check if cell empty then assign x or o
 
 let grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 let cellSize;
+let xTurn = true; // state variable
 
 function setup() {
   // create the largest possible square
@@ -35,7 +37,7 @@ function draw() {
   background("black");
 
   drawGrid();
-  drawXandO();
+  displayXandO();
 }
 
 function drawGrid() {
@@ -46,12 +48,12 @@ function drawGrid() {
 
       // rect(cellSize*x, cellSize*y, cellSize);
       line(x*cellSize, 0, x*cellSize, height); // vertical line
-      line(0, y*cellSize, width, y*cellSize); // horizontal line
+      line(0, y*cellSize, width , y*cellSize); // horizontal line
     }
   }
 }
 
-function drawXandO() {
+function displayXandO() {
   textAlign(CENTER, CENTER);
   
   for (let y = 0; y < 3; y++) {
@@ -61,6 +63,34 @@ function drawXandO() {
       if (grid[y][x] === 1) {
         text("x", x*cellSize+cellSize/2, y*cellSize+cellSize/2);
       }
+      else if (grid[y][x] === 2) {
+        text("o", x*cellSize+cellSize/2, y*cellSize+cellSize/2);
+      }
     }
   }
+}
+
+function assignXorO(cellX, cellY) {
+  if (grid[cellY][cellX] === 0) {
+    if (xTurn) {
+      grid[cellY][cellX] = 1;
+      xTurn = !xTurn;
+    }
+    else {
+      grid[cellY][cellX] = 2;
+      xTurn = !xTurn;
+    }
+  }
+  checkThreeInARow();
+}
+
+function mousePressed() {
+  let cellX = Math.floor(mouseX/cellSize);
+  let cellY = Math.floor(mouseY/cellSize);
+
+  assignXorO(cellX, cellY);
+}
+
+function checkThreeInARow() {
+  
 }

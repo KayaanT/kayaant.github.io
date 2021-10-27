@@ -7,30 +7,30 @@
 
 
 // to do:
-// black background
-// grid in middle of screen
-// create largest square and white grid
 // create custom shapes for x and o (white)
-// if clicked place x or o
-// check for 3 in a row
 // create ai 
 // cursor change when in right spot
-// center grid within canvas
-// funciton to check if cell empty then assign x or o
+// decrease size of grid
+// strikethrough when won
 
 let grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 let cellSize;
 let xTurn = true; // state variable
 
+let xWin = false;
+let oWin = false;
+
 function setup() {
   // create the largest possible square
+  createCanvas(windowWidth, windowHeight);  
   if (windowHeight < windowWidth) {
     createCanvas(windowHeight, windowHeight);  
+    cellSize = height/3;
   }
   else {
-    createCanvas(windowHeight, windowHeight);  
+    createCanvas(windowWidth, windowWidth);  
+    cellSize = width/3;
   }
-  cellSize = height/3;
 }
 
 function draw() {
@@ -38,6 +38,7 @@ function draw() {
 
   drawGrid();
   displayXandO();
+  gameOver();
 }
 
 function drawGrid() {
@@ -47,8 +48,8 @@ function drawGrid() {
       strokeWeight(5);
 
       // rect(cellSize*x, cellSize*y, cellSize);
-      line(x*cellSize, 0, x*cellSize, height); // vertical line
-      line(0, y*cellSize, width , y*cellSize); // horizontal line
+      line(x*cellSize, 0, x*cellSize, cellSize*3); // vertical lines
+      line(0, y*cellSize, cellSize*3 , y*cellSize); // horizontal lines
     }
   }
 }
@@ -82,6 +83,7 @@ function assignXorO(cellX, cellY) {
     }
   }
   checkThreeInARow();
+  checkTie();
 }
 
 function mousePressed() {
@@ -92,5 +94,47 @@ function mousePressed() {
 }
 
 function checkThreeInARow() {
-  
+  // check if x has won (maybe this can be combined into 1 if statement)
+  for (let i = 0; i < 3; i++) {
+    // rows and columns
+    if (grid[0][i] === 1 && grid[1][i] === 1 && grid[2][i] === 1 || grid[i][0] === 1 && grid[i][1] === 1 && grid[i][2] === 1 || 
+        grid[0][0] === 1 && grid[1][1] === 1 && grid[2][2] === 1 || grid[0][2] === 1 && grid[1][1] === 1 && grid[2][0] === 1) { 
+      xWin = true;
+      return true;
+    }
+    else if (grid[0][i] === 2 && grid[1][i] === 2 && grid[2][i] === 2 || grid[i][0] === 2 && grid[i][1] === 2 && grid[i][2] === 2 ||
+            grid[0][0] === 2 && grid[1][1] === 2 && grid[2][2] === 2 || grid[0][2] === 2 && grid[1][1] === 2 && grid[2][0] === 2) { 
+      oWin = true;
+      return true;
+    }
+  }
+}
+
+function checkTie() {
+  for (let y = 0; y < 3; y++) {
+    for (let x = 0; x < 3; x++) {
+      if (grid[y][x] === 0) {
+        return false;
+      }   
+    }
+  }
+  if (checkThreeInARow()) {
+    return false;
+  }
+  return true;
+}
+
+function gameOver() {
+  if (xWin) {
+    alert("X wins");
+    noLoop();
+  }
+  else if (oWin) {
+    alert("O wins");
+    noLoop();
+  }
+  else if (checkTie()) {
+    alert("Tie");
+    noLoop();
+  }
 }

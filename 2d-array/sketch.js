@@ -13,24 +13,27 @@
 // decrease size of grid
 // strikethrough when won
 
-let grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+let grid;
 let cellSize;
-let xTurn = true; // state variable
+let xTurn; // state variable
+let xWin, oWin;
 
-let xWin = false;
-let oWin = false;
+let xScore = 0;
+let oScore = 0; 
+let ties = 0;
 
 function setup() {
   // create the largest possible square
   createCanvas(windowWidth, windowHeight);  
   if (windowHeight < windowWidth) {
     createCanvas(windowHeight, windowHeight);  
-    cellSize = height/3;
+    cellSize = height/3*0.8;
   }
   else {
     createCanvas(windowWidth, windowWidth);  
-    cellSize = width/3;
+    cellSize = width/3*0.8;
   }
+  reset();
 }
 
 function draw() {
@@ -39,6 +42,7 @@ function draw() {
   drawGrid();
   displayXandO();
   gameOver();
+  writeScores();
 }
 
 function drawGrid() {
@@ -54,6 +58,13 @@ function drawGrid() {
   }
 }
 
+function reset() {
+  grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+  xTurn = true;
+  xWin = false;
+  oWin = false;
+}
+
 function displayXandO() {
   textAlign(CENTER, CENTER);
   
@@ -61,6 +72,7 @@ function displayXandO() {
     for (let x = 0; x < 3; x++) {
       fill("white");
       textSize(cellSize * 0.75);
+      strokeWeight(1);
       if (grid[y][x] === 1) {
         text("x", x*cellSize+cellSize/2, y*cellSize+cellSize/2);
       }
@@ -127,14 +139,33 @@ function checkTie() {
 function gameOver() {
   if (xWin) {
     alert("X wins");
-    noLoop();
+    xScore++;
+    reset();
+    // noLoop();
   }
   else if (oWin) {
     alert("O wins");
-    noLoop();
+    oScore++;
+    reset();
+    // noLoop();
   }
   else if (checkTie()) {
     alert("Tie");
-    noLoop();
+    ties++;
+    reset();
+    // noLoop();
   }
+}
+
+function writeScores() {
+  textSize(cellSize*0.25);
+  textAlign(CENTER);
+  strokeWeight(1);
+
+  text("X", cellSize*3/5, height/10*8.5);
+  text(xScore, cellSize*3/5, height/10*9.5);
+  text("Tie", cellSize*3/2, height/10*8.5);
+  text(ties, cellSize*3/2, height/10*9.5);
+  text("O", cellSize*3/5*4, height/10*8.5);
+  text(oScore, cellSize*3/5*4, height/10*9.5);
 }

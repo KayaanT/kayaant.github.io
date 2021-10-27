@@ -477,6 +477,7 @@ module.exports = {
       "collideRectPoly": true,
       "collideLinePoly": true,
       "collidePolyPoly": true,
-      "collidePointTriangle": true
+      "collidePointTriangle": true,
+      "alert": true
   },
 }

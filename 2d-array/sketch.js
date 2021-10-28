@@ -9,7 +9,7 @@
 // to do:
 // create custom shapes for x and o (white)
 // create ai 
-// cursor change when in right spot
+// cursor change to x or o when in right spot
 // decrease size of grid
 // strikethrough when won
 

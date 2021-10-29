@@ -38,11 +38,11 @@ function setup() {
 
 function draw() {
   background("black");
-
   drawGrid();
   displayXandO();
   gameOver();
   writeScores();
+  autoMove();
 }
 
 function drawGrid() {
@@ -168,4 +168,56 @@ function writeScores() {
   text(ties, cellSize*3/2, height/10*9.5);
   text("O", cellSize*3/5*4, height/10*8.5);
   text(oScore, cellSize*3/5*4, height/10*9.5);
+}
+
+function autoMove() {
+  if (!xTurn) {
+    // check if o can win 
+    for (let i = 0; i < 3; i++) { 
+      // rows
+      if (grid[i][0] === 2 && grid[i][1] === 2 && grid[i][2] !== 1 || grid[i][2] === 2 && grid[i][1] === 2 && grid[i][0] !== 1 || grid[i][2] === 2 && grid[i][0] === 2 && grid[i][1] !== 1) {
+        grid[i][0] = 2;
+        grid[i][1] = 2;
+        grid[i][2] = 2;
+        xTurn = true;
+        checkThreeInARow();
+        checkTie();
+        return;
+      }
+      // columns
+      if (grid[0][i] === 2 && grid[1][i] === 2 && grid[2][i] !== 1|| grid[0][i] === 2 && grid[2][i] === 2 && grid[1][i] !== 1|| grid[1][i] === 2 && grid [2][i] === 2 && grid[0][i] !== 1) {
+        grid[0][i] = 2;
+        grid[1][i] = 2;
+        grid[2][i] = 2;
+        xTurn = true;
+        checkThreeInARow();
+        checkTie();
+        return;
+      }
+    }
+
+    // center
+    if (grid[1][1] === 0) {
+      grid[1][1] = 2;
+      xTurn = true;
+    }
+    else if (grid[0][0] === 0) {
+      grid[0][0] = 2;
+      xTurn = true;
+    }
+    else if (grid[0][2] === 0) {
+      grid[0][2] = 2;
+      xTurn = true;
+    }
+    else if (grid[2][0] === 0) {
+      grid[2][0] = 2;
+      xTurn = true;
+    }
+    else if (grid[2][2] === 0) {
+      grid[2][2] = 2;
+      xTurn = true;
+    }
+  }
+  checkThreeInARow();
+  checkTie();
 }

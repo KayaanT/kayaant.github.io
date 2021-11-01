@@ -40,9 +40,9 @@ function draw() {
   background("black");
   drawGrid();
   displayXandO();
-  gameOver();
   writeScores();
   autoMove();
+  gameOver();
 }
 
 function drawGrid() {
@@ -138,21 +138,21 @@ function checkTie() {
 
 function gameOver() {
   if (xWin) {
-    alert("X wins");
     xScore++;
     reset();
+    alert("X wins");
     // noLoop();
   }
   else if (oWin) {
-    alert("O wins");
     oScore++;
     reset();
+    alert("O wins");
     // noLoop();
   }
   else if (checkTie()) {
-    alert("Tie");
     ties++;
     reset();
+    alert("Tie");
     // noLoop();
   }
 }
@@ -215,6 +215,22 @@ function autoMove() {
     }
     else if (grid[2][2] === 0) {
       grid[2][2] = 2;
+      xTurn = true;
+    }
+    else if (grid[0][1] === 0) {
+      grid[0][1] = 2;
+      xTurn = true;
+    }
+    else if (grid[1][0] === 0) {
+      grid[1][0] = 2;
+      xTurn = true;
+    }
+    else if (grid[1][2] === 0) {
+      grid[1][2] = 2;
+      xTurn = true;
+    }
+    else if (grid[2][1] === 0) {
+      grid[2][1] = 2;
       xTurn = true;
     }
   }

@@ -56,3 +56,20 @@ Rorschach,Berrettini (Basilashvili),Sinner (Norrie)
 Ben C,de minaur (basilashvili),sinner (ruud)
 Lumi,Berrettini (Hurkacz),Ruud (Schwartzman)
 F$X(%),Berrettini (De Minaur),Ruud (Sinner)
+--
+siomani,De Minaur (Berrettini),Berrettini (Zverev)
+TimH,Berrettini (De Minaur),Schwartzman (Zverev)
+Kayaan,Alcaraz (De Minaur),Berrettini (Sinner)
+hanto,Berrettini (Carre�o Busta),Schwartzman (Ruud)
+Skynix,Alcaraz (Murray),Zverev (Ruud)
+Rorschach,Berrettini (Basilashvili),Ruud (Schwartzman)
+Lumi,Berrettini (Hurkacz),Schwartzman (Alcaraz)
+NL.24,Berrettini(De Minaur),Day 5: Schwartzman(Zverev)  might change tho
+NightCroissant,Berrettini (De Minaur),Schwartzman (Ruud)
+kaiou,De Minaur (Basilashvili),Schwartzman (Berrettini)
+--
+
+24Karat,Berrettini (De Minaur),Schartzman (Zverev)
+Icy King,De Minuar (Carreno Busta),Scwartzman (Sinner)
+baraba,Berrettini (Carreno-Busta),Schwartzman (Zverev)
+Ben C,de minaur (basilashvili),zverev (scwartzman)

@@ -52,9 +52,26 @@ class Ball {
       this.dy = -this.dy;
     }
   }
+
+  isPointInBall(x, y) {
+    if (dist(x, y, this.x, this.y) < this.radius) {
+      return true;
+    }
+    return false;
+  }
 }
 
 function mousePressed() {
-  let theBall = new Ball(mouseX, mouseY);
-  balls.push(theBall);
+  for (let i = balls.length-1; i >= 0; i--) {
+    if (balls[i].isPointInBall(mouseX, mouseY)) {
+      balls.splice(i, 1);
+    }
+  }
+}
+
+function keyPressed() {
+  if (key === " ") {
+    let theBall = new Ball(mouseX, mouseY);
+    balls.push(theBall);
+  }
 }

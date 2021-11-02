@@ -7,8 +7,8 @@
 
 
 // to do:
+// ai check if x can win
 // create custom shapes for x and o (white)
-// create ai 
 // cursor change to x or o when in right spot
 // decrease size of grid
 // strikethrough when won
@@ -196,42 +196,27 @@ function autoMove() {
       }
     }
 
-    // center
-    if (grid[1][1] === 0) {
-      grid[1][1] = 2;
-      xTurn = true;
-    }
-    else if (grid[0][0] === 0) {
-      grid[0][0] = 2;
-      xTurn = true;
-    }
-    else if (grid[0][2] === 0) {
-      grid[0][2] = 2;
-      xTurn = true;
-    }
-    else if (grid[2][0] === 0) {
-      grid[2][0] = 2;
-      xTurn = true;
-    }
-    else if (grid[2][2] === 0) {
-      grid[2][2] = 2;
-      xTurn = true;
-    }
-    else if (grid[0][1] === 0) {
-      grid[0][1] = 2;
-      xTurn = true;
-    }
-    else if (grid[1][0] === 0) {
-      grid[1][0] = 2;
-      xTurn = true;
-    }
-    else if (grid[1][2] === 0) {
-      grid[1][2] = 2;
-      xTurn = true;
-    }
-    else if (grid[2][1] === 0) {
-      grid[2][1] = 2;
-      xTurn = true;
+    // check if x can win
+
+    // if not, then place in a square
+    let orderToFill = [
+      {y: 1, x: 1},
+      {y: 0, x: 0},
+      {y: 0, x: 2},
+      {y: 2, x: 0},
+      {y: 2, x: 2},
+      {y: 0, x: 1},
+      {y: 1, x: 0},
+      {y: 1, x: 2},
+      {y: 2, x: 1},
+    ];
+
+    for (let pair of orderToFill) {
+      if (grid[pair.y][pair.x] === 0) {
+        grid[pair.y][pair.x] = 2;
+        xTurn = true;
+        break;
+      }
     }
   }
   checkThreeInARow();

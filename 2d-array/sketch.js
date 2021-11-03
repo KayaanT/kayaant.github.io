@@ -3,12 +3,13 @@
 // Date
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// Created an AI which makes different moves every time
 
 
 // to do:
-// ai check if x can win
-// create custom shapes for x and o (white)
+// loop to check x and o at the same time
+// fix function calls to work in order
+// create custom shapes for x and o (white) or to click
 // cursor change to x or o when in right spot
 // decrease size of grid
 // strikethrough when won
@@ -37,6 +38,7 @@ function setup() {
 }
 
 function draw() {
+  cursor('pointer');
   background("black");
   drawGrid();
   displayXandO();
@@ -155,7 +157,7 @@ function gameOver() {
     alert("Tie");
     // noLoop();
   }
-}
+} 
 
 function writeScores() {
   textSize(cellSize*0.25);
@@ -194,12 +196,91 @@ function autoMove() {
         checkTie();
         return;
       }
+
+      // diagonal top left to bottm right
+      if (grid[0][0] === 2 && grid[1][1] === 2 && grid[2][2] === 0 || grid[0][0] === 2 && grid[1][1] === 0 && grid[2][2] === 2 || grid[0][0] === 0 && grid[1][1] === 2 && grid[2][2] === 2) {
+        grid[0][0] = 2;
+        grid[1][1] = 2;
+        grid[2][2] = 2;
+      }
+      // diagonal top right to bottm left
+      if (grid[0][2] === 2 && grid[1][1] === 2 && grid[2][0] === 0 || grid[0][2] === 2 && grid[1][1] === 0 && grid[2][0] === 2 || grid[0][2] === 0 && grid[1][1] === 2 && grid[2][0] === 2) {
+        grid[0][2] = 2;
+        grid[1][1] = 2;
+        grid[2][0] = 2;
+      }
+
+      // check if x can win
+      //rows
+      if (grid[i][0] === 1 && grid[i][1] === 1 && grid[i][2] === 0 || grid[i][2] === 1 && grid[i][1] === 1 && grid[i][0] === 0 || grid[i][2] === 1 && grid[i][0] === 1 && grid[i][1] === 0) {
+        if (grid[i][0] === 0) {
+          grid[i][0] = 2;
+        }
+        if (grid[i][1] === 0) {
+          grid[i][1] = 2;
+        }
+        if (grid[i][2] === 0) {
+          grid[i][2] = 2;
+        }
+        xTurn = true;
+        checkThreeInARow();
+        checkTie();
+        return;
+      }
+
+      //columns
+      if (grid[0][i] === 1 && grid[1][i] === 1 && grid[2][i] === 0 || grid[0][i] === 1 && grid[2][i] === 1 && grid[1][i] === 0|| grid[1][i] === 1 && grid [2][i] === 1 && grid[0][i] === 0) {
+        if (grid[0][i] === 0) {
+          grid[0][i] = 2;
+        }
+        if (grid[1][i] === 0) {
+          grid[1][i] = 2;
+        }
+        if (grid[2][i] === 0) {
+          grid[2][i] = 2;
+        }
+        xTurn = true;
+        checkThreeInARow();
+        checkTie();
+        return;
+      }
+
+      // diagonal
+      if (grid[0][0] === 1 && grid[1][1] === 1 && grid[2][2] === 0 || grid[0][0] === 1 && grid[1][1] === 0 && grid[2][2] === 1 || grid[0][0] === 0 && grid[1][1] === 1 && grid[2][2] === 1) {
+        if (grid[0][0] === 0) {
+          grid[0][0] = 2;
+        }
+        if (grid[1][1] === 0) {
+          grid[1][1] = 2;
+        }
+        if (grid[2][2] === 0) {
+          grid[2][2] = 2;
+        }
+        xTurn = true;
+        checkThreeInARow();
+        checkTie();
+        return;
+      }
+      // diagonal top right to bottm left
+      if (grid[0][2] === 1 && grid[1][1] === 1 && grid[2][0] === 0 || grid[0][2] === 1 && grid[1][1] === 0 && grid[2][0] === 1 || grid[0][2] === 0 && grid[1][1] === 1 && grid[2][0] === 1) {
+        if (grid[0][2] === 0) {
+          grid[0][2] = 2;
+        }
+        if (grid[1][1] === 0) {
+          grid[1][1] = 2;
+        }
+        if (grid[2][0] === 0) {
+          grid[2][0] = 2;
+        }
+        xTurn = true;
+        checkThreeInARow();
+        checkTie();
+        return;
+      }
     }
 
-    // check if x can win
-
-    // if not, then place in a square
-    let orderToFill = [
+    // if none of the above is possible, then place an o in a square
+    let spotsToFill = [
       {y: 1, x: 1},
       {y: 0, x: 0},
       {y: 0, x: 2},
@@ -210,8 +291,9 @@ function autoMove() {
       {y: 1, x: 2},
       {y: 2, x: 1},
     ];
+    spotsToFill = shuffle(spotsToFill);
 
-    for (let pair of orderToFill) {
+    for (let pair of spotsToFill) {
       if (grid[pair.y][pair.x] === 0) {
         grid[pair.y][pair.x] = 2;
         xTurn = true;

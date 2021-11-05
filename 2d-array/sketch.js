@@ -10,7 +10,6 @@
 // REWRITE CODE/FUNCTIONS
 // loop to check x and o at the same time
 // fix function calls to work in order
-// create custom shapes for x and o (white) or to click
 // function to check wher emouse x is, then link or cross cursor
 // decrease size of grid
 // strikethrough when won
@@ -39,7 +38,7 @@ function setup() {
 }
 
 function draw() {
-  cursor('pointer'); // change this into a function maybe 
+  cursor("pointer"); // change this into a function maybe 
   background("black");
   drawGrid();
   displayXandO();
@@ -177,13 +176,13 @@ function autoMove() {
   if (!xTurn) {
     // check if o can win 
     // diagonal top left to bottm right
-    if (grid[0][0] === 2 && grid[1][1] === 2 && grid[2][2] === 0 || grid[0][0] === 2 && grid[1][1] === 0 && grid[2][2] === 2 || grid[0][0] === 0 && grid[1][1] === 2 && grid[2][2] === 2) {
+    if ([grid[0][0] === 2, grid[1][1] === 2, grid[2][2] === 2].filter(Boolean).length === 2) {
       for (let j = 0; j < 3; j++) {
         grid[j][j] = 2;  
       }
     }
     // diagonal top right to bottm left
-    if (grid[0][2] === 2 && grid[1][1] === 2 && grid[2][0] === 0 || grid[0][2] === 2 && grid[1][1] === 0 && grid[2][0] === 2 || grid[0][2] === 0 && grid[1][1] === 2 && grid[2][0] === 2) {
+    if ([grid[0][2] === 2, grid[1][1] === 2, grid[2][0] === 2].filter(Boolean).length === 2) {
       for (let j = 0; j < 3; j++) {
         if (grid[j][2-j] === 0) {
           grid[j][2-j] = 2;
@@ -193,7 +192,7 @@ function autoMove() {
 
     for (let i = 0; i < 3; i++) { 
       // rows
-      if (grid[i][0] === 2 && grid[i][1] === 2 && grid[i][2] !== 1 || grid[i][2] === 2 && grid[i][1] === 2 && grid[i][0] !== 1 || grid[i][2] === 2 && grid[i][0] === 2 && grid[i][1] !== 1) {
+      if ([grid[i][0] === 2, grid[i][1] === 2, grid[i][2] === 2].filter(Boolean).length === 2) {
         for (let j = 0; j < 3; j++) {
           grid[i][j] = 2;
         }
@@ -203,7 +202,7 @@ function autoMove() {
         return;
       }
       // columns
-      if (grid[0][i] === 2 && grid[1][i] === 2 && grid[2][i] !== 1 || grid[0][i] === 2 && grid[2][i] === 2 && grid[1][i] !== 1|| grid[1][i] === 2 && grid [2][i] === 2 && grid[0][i] !== 1) {
+      if ([grid[0][i] === 2, grid[1][i] === 2, grid[2][i] === 0].filter(Boolean).length === 2) {
         for (let j = 0; j < 3; j++) {
           grid[j][i] = 2;
         }
@@ -215,7 +214,7 @@ function autoMove() {
 
       // check if x can win
       //rows
-      if (grid[i][0] === 1 && grid[i][1] === 1 && grid[i][2] === 0 || grid[i][2] === 1 && grid[i][1] === 1 && grid[i][0] === 0 || grid[i][2] === 1 && grid[i][0] === 1 && grid[i][1] === 0) {
+      if ([grid[i][0] === 1, grid[i][1] === 1, grid[i][2] === 1].filter(Boolean).length === 2) {
         for (let j = 0; j < 3; j++) {
           if (grid[i][j] === 0) {
             grid[i][j] = 2;
@@ -228,7 +227,7 @@ function autoMove() {
       }
 
       //columns
-      if (grid[0][i] === 1 && grid[1][i] === 1 && grid[2][i] === 0 || grid[0][i] === 1 && grid[2][i] === 1 && grid[1][i] === 0|| grid[1][i] === 1 && grid [2][i] === 1 && grid[0][i] === 0) {
+      if ([grid[0][i] === 1, grid[1][i] === 1, grid[2][i] === 1].filter(Boolean).length === 2) {
         for (let j = 0; j < 3; j++) {
           if (grid[j][i] === 0) {
             grid[j][i] = 2;
@@ -242,7 +241,7 @@ function autoMove() {
     }
 
     // diagonal top left to bottom right
-    if (grid[0][0] === 1 && grid[1][1] === 1 && grid[2][2] === 0 || grid[0][0] === 1 && grid[1][1] === 0 && grid[2][2] === 1 || grid[0][0] === 0 && grid[1][1] === 1 && grid[2][2] === 1) {
+    if ([grid[0][0] === 1, grid[1][1] === 1, grid[2][2] === 1].filter(Boolean).length === 2) {
       for (let j = 0; j < 3; j++) {
         if (grid[j][j] === 0) {
           grid[j][j] = 2;

@@ -3,29 +3,19 @@
 // Date
 //
 // Extra for Experts:
-// Created an AI which makes different moves every time, but with intelligence
+// Created an AI which makes different moves every time, but with intelligence. It will try to block you or win before making the random move.
+// Had mouse cursor chage depending on where it is in the canvas
 
+let grid, cellSize;
+let xTurn, xWin, oWin; // state variables
 
-// to do:
-// REWRITE CODE/FUNCTIONS
-// loop to check x and o at the same time
-// fix function calls to work in order
-// create custom shapes for x and o (white) or to click
-// function to check wher emouse x is, then link or cross cursor
-// decrease size of grid
-// strikethrough when won
-
-let grid;
-let cellSize;
-let xTurn; // state variable
-let xWin, oWin;
-
+// scores
 let xScore = 0;
 let oScore = 0; 
 let ties = 0;
 
 function setup() {
-  // create the largest possible square
+  // create the largest possible square and calculate cell size (80% of the canvas)
   createCanvas(windowWidth, windowHeight);  
   if (windowHeight < windowWidth) {
     createCanvas(windowHeight, windowHeight);  
@@ -35,26 +25,29 @@ function setup() {
     createCanvas(windowWidth, windowWidth);  
     cellSize = width/3*0.8;
   }
+
   reset();
 }
 
 function draw() {
-  cursor('pointer'); // change this into a function maybe 
-  background("black");
+  background("black"); 
+
   drawGrid();
   displayXandO();
+  changeCursor();
   writeScores();
-  autoMove();
+  checkThreeInARow();
   gameOver();
+  autoMove();
 }
 
 function drawGrid() {
+  // draw the grid lines
   for (let y = 1; y < 3; y++) {
     for (let x = 1; x < 3; x++) {
       stroke("white");
       strokeWeight(5);
 
-      // rect(cellSize*x, cellSize*y, cellSize);
       line(x*cellSize, 0, x*cellSize, cellSize*3); // vertical lines
       line(0, y*cellSize, cellSize*3 , y*cellSize); // horizontal lines
     }
@@ -62,6 +55,7 @@ function drawGrid() {
 }
 
 function reset() {
+  // reset grid for a new game
   grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
   xTurn = true;
   xWin = false;
@@ -70,12 +64,13 @@ function reset() {
 
 function displayXandO() {
   textAlign(CENTER, CENTER);
-  
+  // display x or o, depending on the value of the square
   for (let y = 0; y < 3; y++) {
     for (let x = 0; x < 3; x++) {
       fill("white");
-      textSize(cellSize * 0.75);
+      textSize(cellSize * 0.75); // dynamic text size
       strokeWeight(1);
+
       if (grid[y][x] === 1) {
         text("x", x*cellSize+cellSize/2, y*cellSize+cellSize/2);
       }
@@ -87,7 +82,9 @@ function displayXandO() {
 }
 
 function assignXorO(cellX, cellY) {
+  // check if square is empty
   if (grid[cellY][cellX] === 0) {
+    // check whose turn it is
     if (xTurn) {
       grid[cellY][cellX] = 1;
       xTurn = !xTurn;
@@ -97,26 +94,45 @@ function assignXorO(cellX, cellY) {
       xTurn = !xTurn;
     }
   }
-  checkThreeInARow();
-  checkTie();
 }
 
 function mousePressed() {
+  // calculate which square mouse clicked in
   let cellX = Math.floor(mouseX/cellSize);
   let cellY = Math.floor(mouseY/cellSize);
 
   assignXorO(cellX, cellY);
 }
 
+function changeCursor() {
+  // calculate which square mouse is in
+  let cellX = Math.floor(mouseX/cellSize);
+  let cellY = Math.floor(mouseY/cellSize);
+
+  // change cursor depending on what's in the square
+  if (cellY < 3 && cellX < 3) { // only apply this within the grid
+    if (grid[cellY][cellX] === 0) {
+      cursor("pointer"); 
+    }
+    else {
+      cursor("not-allowed");
+    }
+  }
+  else {
+    cursor("default");
+  }
+}
+
 function checkThreeInARow() {
   // check if x has won (maybe this can be combined into 1 if statement)
   for (let i = 0; i < 3; i++) {
-    // rows and columns
+    // rows, columns and diagnonal - x
     if (grid[0][i] === 1 && grid[1][i] === 1 && grid[2][i] === 1 || grid[i][0] === 1 && grid[i][1] === 1 && grid[i][2] === 1 || 
         grid[0][0] === 1 && grid[1][1] === 1 && grid[2][2] === 1 || grid[0][2] === 1 && grid[1][1] === 1 && grid[2][0] === 1) { 
       xWin = true;
       return true;
     }
+    // rows, columns and diagnonal - o
     else if (grid[0][i] === 2 && grid[1][i] === 2 && grid[2][i] === 2 || grid[i][0] === 2 && grid[i][1] === 2 && grid[i][2] === 2 ||
             grid[0][0] === 2 && grid[1][1] === 2 && grid[2][2] === 2 || grid[0][2] === 2 && grid[1][1] === 2 && grid[2][0] === 2) { 
       oWin = true;
@@ -126,6 +142,7 @@ function checkThreeInARow() {
 }
 
 function checkTie() {
+  // check whether all squares are full and nobody has 3 in a row
   for (let y = 0; y < 3; y++) {
     for (let x = 0; x < 3; x++) {
       if (grid[y][x] === 0) {
@@ -140,28 +157,30 @@ function checkTie() {
 }
 
 function gameOver() {
+  // shows an alert and resets the grid
   if (xWin) {
     xScore++;
-    reset();
     alert("X wins");
+    reset();
     // noLoop();
   }
   else if (oWin) {
     oScore++;
-    reset();
     alert("O wins");
+    reset();
     // noLoop();
   }
   else if (checkTie()) {
     ties++;
-    reset();
     alert("Tie");
+    reset();
     // noLoop();
   }
 } 
 
 function writeScores() {
-  textSize(cellSize*0.25);
+  // writer the scores to the bottom of the canvas
+  textSize(cellSize*0.25); // dynamic text size
   textAlign(CENTER);
   strokeWeight(1);
 
@@ -174,16 +193,17 @@ function writeScores() {
 }
 
 function autoMove() {
+  // this function checks whether x or o can win, and then decides the best move
   if (!xTurn) {
     // check if o can win 
     // diagonal top left to bottm right
-    if (grid[0][0] === 2 && grid[1][1] === 2 && grid[2][2] === 0 || grid[0][0] === 2 && grid[1][1] === 0 && grid[2][2] === 2 || grid[0][0] === 0 && grid[1][1] === 2 && grid[2][2] === 2) {
+    if ([grid[0][0] === 2, grid[1][1] === 2, grid[2][2] === 2].filter(Boolean).length === 2) {
       for (let j = 0; j < 3; j++) {
         grid[j][j] = 2;  
       }
     }
     // diagonal top right to bottm left
-    if (grid[0][2] === 2 && grid[1][1] === 2 && grid[2][0] === 0 || grid[0][2] === 2 && grid[1][1] === 0 && grid[2][0] === 2 || grid[0][2] === 0 && grid[1][1] === 2 && grid[2][0] === 2) {
+    if ([grid[0][2] === 2, grid[1][1] === 2, grid[2][0] === 2].filter(Boolean).length === 2) {
       for (let j = 0; j < 3; j++) {
         if (grid[j][2-j] === 0) {
           grid[j][2-j] = 2;
@@ -193,23 +213,19 @@ function autoMove() {
 
     for (let i = 0; i < 3; i++) { 
       // rows
-      if (grid[i][0] === 2 && grid[i][1] === 2 && grid[i][2] !== 1 || grid[i][2] === 2 && grid[i][1] === 2 && grid[i][0] !== 1 || grid[i][2] === 2 && grid[i][0] === 2 && grid[i][1] !== 1) {
+      if (grid[i][0] === 2 && grid[i][1] === 2 && grid[i][2] === 0 || grid[i][2] === 2 && grid[i][1] === 2 && grid[i][0] === 0 || grid[i][2] === 2 && grid[i][0] === 2 && grid[i][1] === 0) {
         for (let j = 0; j < 3; j++) {
           grid[i][j] = 2;
         }
         xTurn = true;
-        checkThreeInARow();
-        checkTie();
         return;
       }
       // columns
-      if (grid[0][i] === 2 && grid[1][i] === 2 && grid[2][i] !== 1 || grid[0][i] === 2 && grid[2][i] === 2 && grid[1][i] !== 1|| grid[1][i] === 2 && grid [2][i] === 2 && grid[0][i] !== 1) {
+      if (grid[0][i] === 2 && grid[1][i] === 2 && grid[2][i] === 0 || grid[0][i] === 2 && grid[2][i] === 2 && grid[1][i] === 0|| grid[1][i] === 2 && grid [2][i] === 2 && grid[0][i] === 0) {
         for (let j = 0; j < 3; j++) {
           grid[j][i] = 2;
         }
         xTurn = true;
-        checkThreeInARow();
-        checkTie();
         return;
       }
 
@@ -222,8 +238,6 @@ function autoMove() {
           }
         }
         xTurn = true;
-        checkThreeInARow();
-        checkTie();
         return;
       }
 
@@ -235,8 +249,6 @@ function autoMove() {
           }
         }
         xTurn = true;
-        checkThreeInARow();
-        checkTie();
         return;
       }
     }
@@ -249,8 +261,6 @@ function autoMove() {
         }
       }
       xTurn = true;
-      checkThreeInARow();
-      checkTie();
       return;
     }
     // diagonal top right to bottm left
@@ -261,8 +271,6 @@ function autoMove() {
         }
       }
       xTurn = true;
-      checkThreeInARow();
-      checkTie();
       return;
     }
 
@@ -280,6 +288,7 @@ function autoMove() {
     ];
     spotsToFill = shuffle(spotsToFill); // randomize moves
 
+    // check if square is empty, then place
     for (let pair of spotsToFill) {
       if (grid[pair.y][pair.x] === 0) {
         grid[pair.y][pair.x] = 2;
@@ -288,6 +297,4 @@ function autoMove() {
       }
     }
   }
-  checkThreeInARow();
-  checkTie();
 }
